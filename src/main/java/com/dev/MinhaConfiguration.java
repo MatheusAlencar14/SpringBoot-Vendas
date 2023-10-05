@@ -2,11 +2,10 @@ package com.dev;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
-@Configuration
-@Profile("development") //Isso indica que essa clase só vai funcionar no ambiente development.properties
+/*Posso criar uma anotation e utilizá-la em todas as classes que for necessário, informando seu nome
+* Assim, sempre que for necessário modificar algo, será modificando em todas as classes*/
+@Development
 public class MinhaConfiguration {
 
     @Bean
