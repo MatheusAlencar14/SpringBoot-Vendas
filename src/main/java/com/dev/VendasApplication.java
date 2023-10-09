@@ -28,24 +28,24 @@ public class VendasApplication {
             //--> Recuperando Clientes <--
             List<Cliente> todosClientes = clientes.obterTodos();
             todosClientes.forEach(System.out::println);
-//
-//            //Buscando por nome
-//            System.out.println("Buscando por nome");
-//            clientes.buscarPorNome("Cost").forEach(System.out::println);
-//
-//            //--> Atualizando Clientes <--
-//            todosClientes.forEach(c -> {
-//                c.setNome(c.getNome() + " atualizado.");
-//                clientes.atualizar(c);
-//            });
-//
-//
-//            //--> Deletando Clientes <--
-//            //clientes.deletar(2);
-//
-//            System.out.println("Buscando atualizados");
-//            todosClientes = clientes.obterTodos();
-//            todosClientes.forEach(System.out::println);
+
+            //Buscando por nome
+            System.out.println("Buscando por nome");
+            clientes.buscarPorNome("Cost").forEach(System.out::println);
+
+            //--> Atualizando Clientes <--
+            todosClientes.forEach(c -> {
+                c.setNome(c.getNome() + " atualizado.");
+                clientes.atualizar(c);
+            });
+
+
+            //--> Deletando Clientes <--
+            //clientes.deletar(2);
+
+            System.out.println("Buscando atualizados");
+            todosClientes = clientes.obterTodos();
+            todosClientes.forEach(System.out::println);
         };
     }
 
