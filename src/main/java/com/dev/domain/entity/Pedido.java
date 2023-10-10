@@ -1,13 +1,28 @@
 package com.dev.domain.entity;
 
+import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "pedido")
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
+
+    @ManyToOne //Annotation para Foreign Key Muitos para um
+    @JoinColumn(name = "cliente_id") //Utilizado para uma coluna de um relacionamento
     private Cliente cliente;
+
+    @Column(name = "data_pedido")
     private LocalDate dataPedido;
+
+    @Column(name = "total", length = 20, precision = 2) //precision é sobre quantas casas decimais quer salvar
     private BigDecimal total;
 
     public Pedido() {
