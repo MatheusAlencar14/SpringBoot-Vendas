@@ -22,29 +22,38 @@ public class VendasApplication {
         return args -> {
             //--> Salvando Clientes <--
             System.out.println("Salvando Clientes");
-            clientes.salvar(new Cliente(null, "Matheus Alencar"));
-            clientes.salvar(new Cliente(null, "Miguel Costa"));
+            clientes.save(new Cliente(null, "Matheus Alencar"));
+            clientes.save(new Cliente(null, "Miguel Costa"));
+            clientes.save(new Cliente(null, "Yellow Grey"));
 
             //--> Recuperando Clientes <--
-            List<Cliente> todosClientes = clientes.obterTodos();
+            List<Cliente> todosClientes = clientes.findAll();
             todosClientes.forEach(System.out::println);
 
             //Buscando por nome
             System.out.println("Buscando por nome");
-            clientes.buscarPorNome("Cost").forEach(System.out::println);
+            clientes.findByNomeLike("Cost").forEach(System.out::println);
 
             //--> Atualizando Clientes <--
             todosClientes.forEach(c -> {
                 c.setNome(c.getNome() + " atualizado.");
-                clientes.atualizar(c);
+                clientes.save(c);
             });
 
+            System.out.println("Buscando atualizados");
+            todosClientes = clientes.findAll();
+            todosClientes.forEach(System.out::println);
 
             //--> Deletando Clientes <--
-            //clientes.deletar(2);
+            System.out.println("Deletando por id (3)");
+            clientes.findAll().forEach(c -> {
+                if (c.getId() == 3) {
+                    clientes.delete(c);
+                }
+            });
 
-            System.out.println("Buscando atualizados");
-            todosClientes = clientes.obterTodos();
+            System.out.println("Buscando após deleção");
+            todosClientes = clientes.findAll();
             todosClientes.forEach(System.out::println);
         };
     }
