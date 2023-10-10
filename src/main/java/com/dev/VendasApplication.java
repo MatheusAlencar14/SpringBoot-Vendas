@@ -32,7 +32,11 @@ public class VendasApplication {
 
             //Buscando por nome
             System.out.println("Buscando por nome");
-            clientes.findByNomeLike("Cost").forEach(System.out::println);
+            clientes.findByNomeLike("Matheus Alencar").forEach(System.out::println);
+
+            //Buscando se existe um nome
+            Boolean exist = clientes.existsByNome("Miguel Costa");
+            System.out.println("Existe esse nome: " + exist);
 
             //--> Atualizando Clientes <--
             todosClientes.forEach(c -> {
