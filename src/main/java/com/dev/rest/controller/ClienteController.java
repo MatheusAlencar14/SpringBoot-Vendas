@@ -49,13 +49,13 @@ public class ClienteController {
     @PutMapping("/update/{id}")
     @ResponseBody
     public ResponseEntity updateCliente(@PathVariable Integer id, @RequestBody Cliente cliente) {
-            return clientesRepository
-                    .findById(id)
-                    .map(clienteExits -> {
-                        cliente.setId(clienteExits.getId());
-                        clientesRepository.save(cliente);
-                        return ResponseEntity.noContent().build();
-                    }).orElseGet( () -> ResponseEntity.notFound().build());
+            Optional<Cliente> clienteUpdate = clientesRepository.findById(id);
+            if (clienteUpdate.isPresent()) {
+                cliente.setId(id);
+                clientesRepository.save(cliente);
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.notFound().build();
     }
 }
 //@RequestBody é o que vamos receber
