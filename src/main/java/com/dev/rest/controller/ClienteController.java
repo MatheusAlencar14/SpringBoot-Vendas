@@ -34,6 +34,19 @@ public class ClienteController {
         Cliente clienteSalvo = clientesRepository.save(cliente);
         return ResponseEntity.ok(clienteSalvo);
     }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseBody
+    public ResponseEntity deleteById(@PathVariable Integer id) {
+        Optional<Cliente> cliente = clientesRepository.findById(id);
+        if (cliente.isPresent()) {
+            clientesRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
 //@RequestBody é o que vamos receber
 //@ResponseBody é o que vamos retornar (nossa resposta)
+//@PostMapping Para salvar com informações que não existem no servidor
+//@GetMapping É o RequestMapping com o método GET definido
