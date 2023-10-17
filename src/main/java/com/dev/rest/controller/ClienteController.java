@@ -27,4 +27,13 @@ public class ClienteController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PostMapping //Para salvar com informações que não existem no servidor
+    @ResponseBody
+    public ResponseEntity saveCliente(@RequestBody Cliente cliente) {
+        Cliente clienteSalvo = clientesRepository.save(cliente);
+        return ResponseEntity.ok(clienteSalvo);
+    }
 }
+//@RequestBody é o que vamos receber
+//@ResponseBody é o que vamos retornar (nossa resposta)

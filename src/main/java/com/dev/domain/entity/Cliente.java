@@ -1,5 +1,6 @@
 package com.dev.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.TypeAlias;
 
@@ -17,6 +18,7 @@ public class Cliente {
     @Column(name = "nome", length = 100) //Indicando o nome e o tamanho
     private String nome;
 
+    @JsonIgnore //Ignora esse parâmetro no JSON
     @OneToMany(mappedBy = "cliente") //relacionamento um para muitos. mappedBy mapeia a propriedade cliente
     private Set<Pedido> pedidos; //fazendo uma lista de pedidos e mapeando com JPA
 

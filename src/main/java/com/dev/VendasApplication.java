@@ -15,15 +15,6 @@ import java.util.Arrays;
 @RestController
 public class VendasApplication {
 
-    @Bean
-    public CommandLineRunner commandLineRunner(@Autowired ClientesRepository clientesRepository) {
-        return args -> {
-            Cliente c1 = new Cliente(null, "Matheus");
-            Cliente c2 = new Cliente(null, "Miguel");
-            clientesRepository.saveAll(Arrays.asList(c1, c2));
-        };
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(VendasApplication.class, args);
 
