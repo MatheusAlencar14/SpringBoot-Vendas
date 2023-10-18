@@ -53,10 +53,10 @@ public class ClienteController {
     public void updateCliente(@PathVariable Integer id, @RequestBody Cliente cliente) {
         clientesRepository
                 .findById(id)
-                .map(clienteExistente -> {
-                    cliente.setId(clienteExistente.getId());
+                .map(clienteExist -> {
+                    cliente.setId(clienteExist.getId());
                     clientesRepository.save(cliente);
-                    return clienteExistente;
+                    return clienteExist;
                 }).orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Cliente não encontrado!"
                 ));
