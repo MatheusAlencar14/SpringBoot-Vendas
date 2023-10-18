@@ -2,10 +2,13 @@ package com.dev.rest.controller;
 
 import com.dev.domain.entity.Cliente;
 import com.dev.domain.repository.ClientesRepository;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -56,6 +59,20 @@ public class ClienteController {
                 return ResponseEntity.noContent().build();
             }
             return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity find(Cliente filtro) {
+        ExampleMatcher matcher =
+                ExampleMatcher
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(
+                        ExampleMatcher.StringMatcher.CONTAINING
+                );
+        Example example = Example.of(filtro, matcher);
+        List<Cliente> list = clientesRepository.findAll(example);
+        return ResponseEntity.ok(list);
     }
 }
 //@RequestBody é o que vamos receber
