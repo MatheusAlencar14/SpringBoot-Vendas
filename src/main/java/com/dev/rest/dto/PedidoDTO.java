@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PedidoDTO { //DTO: Data Transfer Object
 
-    private Integer idCliente;
+    private Integer cliente;
     private BigDecimal total;
     private List<ItemPedidoDTO> itens;
 }

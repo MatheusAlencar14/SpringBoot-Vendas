@@ -32,7 +32,7 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     @Transactional
     public Pedido salvar(PedidoDTO pedidoDTO) {
-        Integer idCliente = pedidoDTO.getIdCliente();
+        Integer idCliente = pedidoDTO.getCliente();
         Cliente cliente = clientesRepository
                 .findById(idCliente)
                 .orElseThrow(() -> new RegraNegocioException("Codigo de Cliente inválido"));
@@ -57,7 +57,7 @@ public class PedidoServiceImpl implements PedidoService {
         return itens
                 .stream()
                 .map(dto -> {
-                    Integer idProduto = dto.getIdProduto();
+                    Integer idProduto = dto.getProduto();
                     Produto produto = produtosRepository
                             .findById(idProduto)
                             .orElseThrow(() -> new RegraNegocioException(
