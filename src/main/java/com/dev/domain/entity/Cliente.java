@@ -2,10 +2,16 @@ package com.dev.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.TypeAlias;
 
 import java.util.Set;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity //Mapeando que essa é uma entidade no JPA
 @Table(name = "cliente") //Indicando qual o nome da tabela no Banco de Dados
 public class Cliente {
@@ -18,47 +24,16 @@ public class Cliente {
     @Column(name = "nome", length = 100) //Indicando o nome e o tamanho
     private String nome;
 
-    @JsonIgnore //Ignora esse parâmetro no JSON
-    @OneToMany(mappedBy = "cliente") //relacionamento um para muitos. mappedBy mapeia a propriedade cliente
-    private Set<Pedido> pedidos; //fazendo uma lista de pedidos e mapeando com JPA
-
-    public Cliente() {
-    }
+    @Column(name = "cpf", length = 11)
+    private String cpf;
 
     public Cliente(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    @JsonIgnore //Ignora esse parâmetro no JSON
+    @OneToMany(mappedBy = "cliente") //relacionamento um para muitos. mappedBy mapeia a propriedade cliente
+    private Set<Pedido> pedidos; //fazendo uma lista de pedidos e mapeando com JPA
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Set<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(Set<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                '}';
-    }
 }
