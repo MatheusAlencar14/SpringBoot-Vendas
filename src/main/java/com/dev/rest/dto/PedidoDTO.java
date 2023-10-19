@@ -13,6 +13,6 @@ import java.util.List;
 public class PedidoDTO { //DTO: Data Transfer Object
 
     private Integer idCliente;
-    private BigDecimal tota;
+    private BigDecimal total;
     private List<ItemPedidoDTO> itens;
 }
