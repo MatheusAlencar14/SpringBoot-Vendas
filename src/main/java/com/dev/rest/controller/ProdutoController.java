@@ -56,7 +56,7 @@ public class ProdutoController {
                 .map(produtoExist -> {
                     produto.setId(produtoExist.getId());
                     produtosRepository.save(produto);
-                    return produtoExist;
+                    return produto;
                 }).orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND
                 ));
