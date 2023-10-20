@@ -1,5 +1,6 @@
 package com.dev.domain.entity;
 
+import com.dev.domain.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +32,10 @@ public class Pedido {
 
     @Column(name = "total", precision = 20, scale = 2) //precision é sobre quantas casas decimais quer salvar
     private BigDecimal total;
+
+    @Enumerated(EnumType.STRING) //Salva o status como uma string
+    @Column(name = "status")
+    private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens;
