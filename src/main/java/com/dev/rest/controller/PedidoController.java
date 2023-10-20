@@ -2,7 +2,9 @@ package com.dev.rest.controller;
 
 import com.dev.domain.entity.ItemPedido;
 import com.dev.domain.entity.Pedido;
+import com.dev.domain.enums.StatusPedido;
 import com.dev.exception.RegraNegocioException;
+import com.dev.rest.dto.AtualizarStatusPedidoDTO;
 import com.dev.rest.dto.InfoItemPedidoDTO;
 import com.dev.rest.dto.InfoPedidoDTO;
 import com.dev.rest.dto.PedidoDTO;
@@ -44,6 +46,14 @@ public class PedidoController {
                 .obterPedidoCompleto(id)
                 .map(p -> converter(p))
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Pedido não encontrado."))    ;
+    }
+
+    @PatchMapping("{id}") //Faz atualização parcial do objeto,
+    @ResponseStatus(NO_CONTENT)
+    public void updateStatus(@PathVariable Integer id,
+                             @RequestBody AtualizarStatusPedidoDTO statusAtualizado) {
+        String novoStatus = statusAtualizado.getNovoStatus();
+        service.atualizarStatus(id, StatusPedido.valueOf(novoStatus));
     }
 
     private InfoPedidoDTO converter(Pedido pedido) {

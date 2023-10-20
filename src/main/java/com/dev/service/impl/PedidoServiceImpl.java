@@ -9,6 +9,7 @@ import com.dev.domain.repository.ClientesRepository;
 import com.dev.domain.repository.ItensPedidosRepository;
 import com.dev.domain.repository.PedidosRepository;
 import com.dev.domain.repository.ProdutosRepository;
+import com.dev.exception.PedidoNaoEncontradoException;
 import com.dev.exception.RegraNegocioException;
 import com.dev.rest.dto.ItemPedidoDTO;
 import com.dev.rest.dto.PedidoDTO;
@@ -55,6 +56,18 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Optional<Pedido> obterPedidoCompleto(Integer id) {
         return pedidosRepository.findByIdFetchItens(id);
+    }
+
+    @Override
+    @Transactional
+    public void atualizarStatus(Integer id, StatusPedido statusPedido) {
+        pedidosRepository
+                .findById(id)
+                .map(pedido -> {
+                    pedido.setStatus(statusPedido);
+                    return pedidosRepository.save(pedido);
+                })
+                .orElseThrow(() -> new PedidoNaoEncontradoException());
     }
 
     private List<ItemPedido> converterItens(Pedido pedido, List<ItemPedidoDTO> itens) {
