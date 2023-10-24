@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.TypeAlias;
 
 import java.util.Set;
@@ -28,6 +29,7 @@ public class Cliente {
 
     @Column(name = "cpf", length = 11)
     @NotEmpty(message = "O campo CPF é obrigatório!")
+    @CPF(message = "Informe um CPF válido!") //Anottation específica para validar um CPF
     private String cpf;
 
     public Cliente(Integer id, String nome) {
