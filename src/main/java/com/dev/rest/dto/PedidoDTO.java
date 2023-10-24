@@ -1,5 +1,6 @@
 package com.dev.rest.dto;
 
+import com.dev.validation.NotEmptyList;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -20,5 +21,6 @@ public class PedidoDTO { //DTO: Data Transfer Object
     @NotNull(message = "O campo Total é obrigatório!")
     private BigDecimal total;
 
+    @NotEmptyList(message = "O Pedido não pode ser realizado sem Itens!")
     private List<ItemPedidoDTO> itens;
 }
