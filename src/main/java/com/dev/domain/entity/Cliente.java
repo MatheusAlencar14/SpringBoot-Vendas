@@ -2,6 +2,7 @@ package com.dev.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,11 @@ public class Cliente {
     private Integer id;
 
     @Column(name = "nome", length = 100) //Indicando o nome e o tamanho
+    @NotEmpty(message = "O campo nome é obrigatório!") //Indica que o campo não pode ser vazio
     private String nome;
 
     @Column(name = "cpf", length = 11)
+    @NotEmpty(message = "O campo CPF é obrigatório!")
     private String cpf;
 
     public Cliente(Integer id, String nome) {

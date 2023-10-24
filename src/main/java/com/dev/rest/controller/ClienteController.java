@@ -2,6 +2,7 @@ package com.dev.rest.controller;
 
 import com.dev.domain.entity.Cliente;
 import com.dev.domain.repository.ClientesRepository;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
@@ -30,8 +31,8 @@ public class ClienteController {
     }
 
     @PostMapping //Para salvar com informações que não existem no servidor
-    @ResponseStatus(HttpStatus.CREATED) //Retorna o status que eu definir
-    public Cliente saveCliente(@RequestBody Cliente cliente) {
+    @ResponseStatus(HttpStatus.CREATED) //Retorna o status que eu definir. @Valid é pra validar os campos
+    public Cliente saveCliente(@RequestBody @Valid Cliente cliente) {
         return clientesRepository.save(cliente);
     }
 
