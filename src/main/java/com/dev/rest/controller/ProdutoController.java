@@ -2,6 +2,7 @@ package com.dev.rest.controller;
 
 import com.dev.domain.entity.Produto;
 import com.dev.domain.repository.ProdutosRepository;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class ProdutoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Produto saveProduto(@RequestBody Produto produto) {
+    public Produto saveProduto(@RequestBody @Valid Produto produto) {
         return produtosRepository.save(produto);
     }
 
@@ -50,7 +51,7 @@ public class ProdutoController {
 
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateProduto(@PathVariable Integer id, @RequestBody Produto produto) {
+    public void updateProduto(@PathVariable Integer id, @RequestBody @Valid Produto produto) {
         produtosRepository
                 .findById(id)
                 .map(produtoExist -> {
