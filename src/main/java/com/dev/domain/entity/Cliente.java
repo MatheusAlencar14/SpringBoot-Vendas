@@ -24,12 +24,12 @@ public class Cliente {
     private Integer id;
 
     @Column(name = "nome", length = 100) //Indicando o nome e o tamanho
-    @NotEmpty(message = "O campo Nome é obrigatório!") //Indica que o campo não pode ser vazio
+    @NotEmpty(message = "{campo.nome.obrigatorio}") //Indica que o campo não pode ser vazio
     private String nome;
 
     @Column(name = "cpf", length = 11)
-    @NotEmpty(message = "O campo CPF é obrigatório!")
-    @CPF(message = "Informe um CPF válido!") //Annotation específica para validar um CPF
+    @NotEmpty(message = "{campo.cpf.obrigatorio}")
+    @CPF(message = "{campo.cpf.invalido}") //Annotation específica para validar um CPF
     private String cpf;
 
     public Cliente(Integer id, String nome) {
