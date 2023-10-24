@@ -10,6 +10,7 @@ import com.dev.rest.dto.InfoPedidoDTO;
 import com.dev.rest.dto.PedidoDTO;
 import com.dev.service.PedidoService;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class PedidoController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public Integer save(@RequestBody PedidoDTO pedidoDTO) {
+    public Integer save(@RequestBody @Valid PedidoDTO pedidoDTO) {
         Pedido pedido = service.salvar(pedidoDTO);
         return pedido.getId();
     }
@@ -51,7 +52,7 @@ public class PedidoController {
     @PatchMapping("{id}") //Faz atualização parcial do objeto,
     @ResponseStatus(NO_CONTENT)
     public void updateStatus(@PathVariable Integer id,
-                             @RequestBody AtualizarStatusPedidoDTO statusAtualizado) {
+                             @RequestBody @Valid AtualizarStatusPedidoDTO statusAtualizado) {
         String novoStatus = statusAtualizado.getNovoStatus();
         service.atualizarStatus(id, StatusPedido.valueOf(novoStatus));
     }
