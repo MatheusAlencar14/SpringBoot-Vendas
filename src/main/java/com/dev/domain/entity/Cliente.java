@@ -19,7 +19,7 @@ import java.util.Set;
 public class Cliente {
 
     @Id //Mapeando que esse atributo é um ID
-    @GeneratedValue(strategy = GenerationType.AUTO) //Indicando a estratégia de auto incremento
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Indicando a estratégia de auto incremento
     @Column(name = "id") //Indicando o nome da coluna (como é o mesmo nome, não seria necessário)
     private Integer id;
 

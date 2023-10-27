@@ -10,11 +10,11 @@ import org.hibernate.mapping.ToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "item_pedido")
+@Table(name = "itens_pedido")
 public class ItemPedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -23,7 +23,7 @@ public class ItemPedido {
     private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn(name = "prouto_id")
+    @JoinColumn(name = "produto_id")
     private Produto produto;
 
     @Column(name = "quantidade")
